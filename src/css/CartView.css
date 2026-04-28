@@ -1,0 +1,18 @@
+.custom-btn-finish {
+    border: 2px solid #0ef3f3 !important; 
+    color: #0dcaf0 !important;            
+    background-color: transparent !important;
+    transition: all 0.3s ease-in-out !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none !important;
+}
+
+
+.custom-btn-finish:hover {
+    background-color: #0ef3f3 !important; 
+    color: #000 !important;               
+    box-shadow: 0 0 15px rgba(13, 202, 240, 0.586) !important; 
+    transform: translateY(-2px);
+}

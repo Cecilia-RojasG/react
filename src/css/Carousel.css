@@ -1,0 +1,51 @@
+css
+
+/* Altura para computadoras */
+.carousel-img {
+    height: 486px;
+    object-fit: cover;
+}
+
+/* Altura para tablets */
+@media (max-width: 992px) {
+    .carousel-img {
+        height: 280px;
+    }
+}
+
+/* Altura para móviles */
+@media (max-width: 640px) {
+    .carousel-img {
+        height: 180px; 
+    }
+}
+
+/* Altura base para que el contenido no salte al cargar */
+.custom-carousel {
+    min-height: 380px;
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+    animation-delay: 0.2s; /* Otro tipo de delay vía CSS */
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+.carousel-img {
+    height: 486px;
+    object-fit: cover;
+    cursor: pointer;
+    transition: filter 0.3s ease;
+}
+
+.carousel-img:hover {
+    filter: brightness(1.1); /* Brilla un poco al pasar el mouse */
+}
+
+/* Responsividad para que mantenga el estilo oscuro */
+@media (max-width: 768px) {
+    .carousel-img {
+        height: 300px;
+    }
+}

@@ -1,0 +1,189 @@
+#title-navbar{
+    display: inline-block;
+    vertical-align: middle; 
+    margin-left: 20px;
+    font-size: 1.3rem; 
+    font-weight: 900;
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #8000ff 28%, #c342ff 52%, #28c3b8 71%, #00fbff 91%, #4dffd2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#title-navbar:hover {
+    transform: scale(1.05); 
+    filter: brightness(1.05) drop-shadow(0 5px 15px rgba(0, 255, 179, 0.6));
+}
+
+/* Tamaño para tablets y escritorio (pantallas medianas en adelante) */
+@media (min-width: 800px) {
+    #title-navbar {
+        font-size: 1.6rem;
+    }
+
+    #navbar-img{
+        width: 65px;
+        height: 65px;
+    }
+    
+}
+
+@media (min-width: 1350px) {
+    #title-navbar {
+        font-size: 2rem;
+    }
+
+    #navbar-img{
+        width: 80px;
+        height: 80px;
+    }
+}
+
+@media (min-width: 1400px) {
+    #title-navbar {
+        font-size: 2.2rem;
+    }
+
+    #navbar-img{
+        width: 90px;
+        height: 90px;
+    }
+}
+
+/* Tamaño para tablets y escritorio (pantallas grandes en adelante) */
+@media (min-width: 1490px) {
+    #title-navbar {
+        font-size: 2.5rem;
+    }
+
+    #navbar-img{
+        width: 100px;
+        height: 100px;
+    }
+}
+
+
+/* Tamaño para pantallas muy pequeñas */
+@media (max-width: 490px) {
+    #title-navbar {
+        font-size: 1rem;
+        margin-left: 8px;
+    }
+    #navbar-img{
+        width: 50px;
+        height: 50px;
+    }
+}
+
+.nav-link-custom{
+    color: #66FFD4 !important; 
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: all 0.3s ease; 
+    margin-right: 8px;
+}
+
+.nav-link-custom:hover {
+    color: #8426ff !important; 
+}
+
+#offcanvasNavbarDropdown-expand-xl {
+    color: #66FFD4 !important; 
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    margin-right: 8px;
+}
+
+#offcanvasNavbarDropdown-expand-xl:hover {
+    color: #8426ff !important; 
+}
+
+.boton {
+    padding: 6px 13px;
+    background: linear-gradient(135deg, #00ffdd, #00a0bd);
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    border: none;
+    border-radius: 25px;
+    box-shadow: 0 4px 10px rgba(0, 60, 255, 0.35);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+    }
+
+.boton:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.05);
+    box-shadow: 0 14px 30px rgba(0, 255, 179, 0.45);
+}
+
+.boton:active {
+    transform: translateY(0px) scale(0.98);
+    box-shadow: 0 8px 16px rgba(0, 255, 179, 0.35);
+}
+
+.me-2{
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 25px;
+    padding: 5px 5px;
+    width: 20%;
+    min-width: 200px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    height: fit-content;
+}
+
+.d-flex{
+    display: flex;               
+    justify-content: flex-center;    /* Centra horizontalmente */
+    align-items: center;        /* Centra verticalmente */
+    margin-right: 10px;
+}
+
+.cart-icon{
+    font-size: 1.5rem;
+    color:#66FFD4; 
+    margin-right: 8px;
+    transition: color 0.3s ease transform 0.2s ease;
+    cursor: pointer;
+}
+
+.cart-icon:hover {
+    color: #8426ff ; 
+    transform: scale(1.2);
+}
+
+.search-icon {
+    font-size: 1.4rem;
+    color:#66FFD4; 
+    transition: color 0.3s ease transform 0.2s ease;
+    cursor: pointer;
+}
+
+.search-icon:hover {
+    color: #8426ff ; 
+    transform: scale(1.2);
+}
+
+.dropdown-item.active, 
+.dropdown-item:active, 
+.dropdown-item:focus {
+    background-color: transparent !important; 
+    outline: none;
+}
+
+.title-off{
+    color: #66FFD4 !important; 
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+}
+

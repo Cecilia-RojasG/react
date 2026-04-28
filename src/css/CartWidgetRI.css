@@ -1,0 +1,31 @@
+.cart-container {
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.offcanvas {
+    background-color: #121212 !important; 
+    color: white !important;
+    width: 400px !important;
+}
+
+.offcanvas-header .btn-close {
+    filter: invert(1); 
+}
+
+.btn:focus {
+    box-shadow: none !important;
+}
+
+.item-carrito-container {
+    transition: all 0.3s ease;
+}
+
+.cart-title {
+    color: #0ef3f3;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}

@@ -1,0 +1,78 @@
+css
+.footer-container {
+    background-color: #000; 
+    padding: 40px 0;
+    margin-top: 60px;
+    border-top: 1px solid #1a1a1a;
+    width: 100%;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    color: #a0a0a0; 
+    text-decoration: none;
+    font-size: 0.8rem; 
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #0dcaf0; 
+}
+
+.footer-brand p {
+    color: #ffffff;             
+    font-weight: 700;           
+    font-size: 1rem;          
+    letter-spacing: 2px;        
+    text-transform: uppercase;  
+    margin-bottom: 5px !important; 
+    text-align: left;        
+}
+
+.payment-icon {
+    height: 25px; 
+    width: auto;
+    filter: none !important;
+    opacity: 1;
+    transition: transform 0.2s ease;
+}
+
+.payment-icon:hover {
+    transform: scale(1.2);
+}
+
+.d-flex.flex-column.align-items-start {
+    text-align: left !important;
+}
+
+@media (max-width: 768px) {
+    .footer-container .container {
+        flex-direction: column !important;
+        text-align: center !important;
+        gap: 30px !important;
+    }
+
+    .footer-links {
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .footer-brand p {
+        text-align: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .footer-links {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
