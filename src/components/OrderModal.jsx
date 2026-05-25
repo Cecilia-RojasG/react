@@ -3,13 +3,19 @@ import { Modal, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 const OrderModal = ({ show, onHide, orderId, metodoPago, total, clearCart }) => {
+    const handleCierreCompleto = () => {
+        clearCart(); // Vacia el carrito de forma segura
+        onHide();    // Cierra el modal visualmente
+    };
     return (
-        <Modal show={show} onHide={onHide} centered data-bs-theme="dark">
+        <Modal show={show} onHide={handleCierreCompleto} centered data-bs-theme="dark" backdrop="static" keyboard={false}>
             <Modal.Body className="p-0 overflow-hidden rounded border border-info">
                 {/* Encabezado Estilo Ticket */}
                 <div className="bg-info p-4 text-black text-center">
                     <h2 className="fw-bold mb-0">¡ORDEN RECIBIDA!</h2>
-                    <p className="mb-0 fw-semibold">Número de pedido: #{orderId}</p>
+                    <p className="mb-0 fw-semibold">
+                        {orderId ? `Número de pedido: #${orderId}` : 'Generando número de pedido...'}
+                    </p>
                 </div>
 
                 <div className="p-4 bg-dark text-white">
@@ -37,10 +43,7 @@ const OrderModal = ({ show, onHide, orderId, metodoPago, total, clearCart }) => 
                         to="/" 
                         variant="info" 
                         className="w-100 py-2 fw-bold text-black"
-                        onClick={() => {
-                            clearCart(); // Vaciamos el carrito al salir
-                            onHide();
-                        }}
+                        onClick={handleCierreCompleto}
                     >
                         VOLVER A LA TIENDA
                     </Button>

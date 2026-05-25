@@ -9,10 +9,10 @@ const Error = () => {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            padding: '10px',
-            gap:'10px'
+            padding: '20px',
+            gap:'20px'
         }}>
-            <img alt='Error' src='/404.webp'
+            <img alt='Error 404: Página no encontrada' src='/404.webp'
                 style={{ 
                     width: '100%',      
                     maxWidth: '1300px',  

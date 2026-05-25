@@ -4,7 +4,9 @@ import '../css/ItemCard.css'
 import {Link} from 'react-router-dom'
 
 const ItemCard = ({producto}) => {
-    const precioFinal = Math.round(producto.precio - (producto.precio * producto.descuento / 100));
+    const descuentoValido = producto.descuento || 0
+    const precioBase = producto.precio || 0
+    const precioFinal = Math.round(precioBase - (precioBase * descuentoValido / 100))
     return (
         <Card className="item-card">
             
@@ -25,7 +27,7 @@ const ItemCard = ({producto}) => {
                     WebkitLineClamp: '1', 
                     WebkitBoxOrient: 'vertical',
                     lineHeight: '1.5em',
-                    hight: '1.5em',
+                    height: '1.5em',
                     whiteSpace: 'normal'
                 }}>
                     {producto.nombre}
@@ -44,13 +46,13 @@ const ItemCard = ({producto}) => {
                             <br/>
                             <span>Antes: </span>
                             <span className="text-decoration-line-through text-muted small">
-                                ${producto.precio.toLocaleString()}
+                                ${precioBase.toLocaleString()}
                             </span>
                         </>
                     ):(
                         <>
                             <div className="fw-bold h5">
-                                ${producto.precio.toLocaleString()}
+                                ${precioBase.toLocaleString()}
                             </div>
                             
                             <div className="small" style={{ visibility: 'hidden' }}>Antes: $0</div>

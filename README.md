@@ -1,16 +1,29 @@
-# React + Vite
+# El Contemplador Feliz Web App 🎲🛒
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este es un proyecto de página web de e-commerce de juegos de rol, mesa y libros, realizado con React JS para propósitos de práctica y aprendizaje.
 
-Currently, two official plugins are available:
+![app](/public/beholderdondo100.webp)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+### Instalación
 
-## React Compiler
+1. Clone el repositorio.
+2. Muevase a la carpeta creada con el comando `cd CODER-FLEX-89745-CROJAS`
+3. Ejecute el comando `npm install` para instalar dependencias y crear la carpeta node_modules
+4. Ejecute el comando `npm run dev`para levantarlo en el servidor local
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+>Es necesario tener NodeJS instalado, preferentemente v22.11.0
 
-## Expanding the ESLint configuration
+### Versión Host 💻
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Si desea ver el proyecto online, ingrese al siguiente link: [Coder Flex App](http:/)
+
+### Librerias utilizadas
+
+- [React Bootstrap](): utilizada para el styling de la app.
+- [React Fast Marquee](): para la marquesina superior en la app.
+- [React Icons](): para iconos en la app.
+- [Firebase](): base de datos del proyecto
+- [React Router Dom](): libreria de navegación por rutas.
+
+
+Desarrollado por Cecilia Rojas.

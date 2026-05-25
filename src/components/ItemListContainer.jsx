@@ -2,6 +2,8 @@ import { useState, useEffect } from "react"
 import { getProducts } from "../mock/asyncData"
 import ItemList from "./ItemList"
 import Loader from "./Loader"
+import {collection, getDocs, where, query} from "firebase/firestore"
+import {db} from "../service/firebase"
 import { useParams, useLocation } from 'react-router-dom';
 import '../css/ItemListContainer.css'
 
@@ -38,15 +40,23 @@ const ItemListContainer = ({greeting = "Catálogo"})=> {
 
     useEffect(()=>{
         setLoading(true)
-        getProducts()
+        const productsCollection = collection(db, "items")
+        getDocs(productsCollection)
             .then((res) => {
-                let productosFiltrados = res;
+                const list= res.docs.map((doc)=>{
+                    return{
+                        id:doc.id,
+                        ...doc.data()
+                    }
+                })
+                setData(list)
+                let productosFiltrados = list;
                 
                 if (location.pathname === '/ofertas') {
                     productosFiltrados = productosFiltrados.filter(p => p.descuento > 0);
                 }
                 else if (location.pathname === '/novedades') {
-                    productosFiltrados = res.filter(p => p.novedad === 'si')
+                    productosFiltrados = productosFiltrados.filter(p => p.novedad === 'si')
                 }
                 else if (type) {
                     productosFiltrados = productosFiltrados.filter(p => 

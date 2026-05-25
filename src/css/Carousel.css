@@ -22,10 +22,18 @@ css
 
 /* Altura base para que el contenido no salte al cargar */
 .custom-carousel {
-    min-height: 380px;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
     opacity: 0;
     animation: fadeIn 1s forwards;
+    width: 100%;
     animation-delay: 0.2s; /* Otro tipo de delay vía CSS */
+}
+
+.custom-carousel .carousel-inner,
+.custom-carousel .carousel-item {
+    width: 100%;
 }
 
 @keyframes fadeIn {
@@ -33,7 +41,9 @@ css
 }
 
 .carousel-img {
-    height: 486px;
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 16 / 5;
     object-fit: cover;
     cursor: pointer;
     transition: filter 0.3s ease;
@@ -43,9 +53,3 @@ css
     filter: brightness(1.1); /* Brilla un poco al pasar el mouse */
 }
 
-/* Responsividad para que mantenga el estilo oscuro */
-@media (max-width: 768px) {
-    .carousel-img {
-        height: 300px;
-    }
-}

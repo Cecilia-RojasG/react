@@ -11,7 +11,8 @@ const ItemDetail = ({detail}) => {
         addItem(detail,cantidad )
         setPurchase(true)
     }
-    const precioFinal = Math.round(detail.precio - (detail.precio * detail.descuento / 100));
+    const descuentoValido = detail.descuento || 0
+    const precioFinal = Math.round(detail.precio - (detail.precio * detail.descuento / 100))
 
     return (
         <div className="container mt-5">
@@ -67,7 +68,7 @@ const ItemDetail = ({detail}) => {
                             
                             <p className="text-muted mb-4 small">Stock disponible: <strong>{detail.stock}</strong> unidades.</p>
                             {purchase 
-                            ? <div style={{display:'flex', justifyContent:'space-around', alignItems:'center', width:'80%'}}>
+                            ? <div style={{display:'flex', justifyContent:'space-around', alignItems:'center', width:'80%', gap: '10px', flexWrap: 'wrap'}}>
                                 <Link className='btn btn-dark' to='/'>Seguir Comprando</Link>
                                 <Link className='btn btn-dark' to='/cart'>Ir al carrito</Link>
                             </div> 

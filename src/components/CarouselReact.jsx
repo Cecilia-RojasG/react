@@ -25,7 +25,7 @@ const CarrouselReact = () => {
     useEffect(() => {
         const timer = setTimeout(() => {
             setShow(true);
-        }, 1000);
+        }, 500);
 
         return () => clearTimeout(timer);
     }, []);
