@@ -7,6 +7,11 @@ const ItemCard = ({producto}) => {
     const descuentoValido = producto.descuento || 0
     const precioBase = producto.precio || 0
     const precioFinal = Math.round(precioBase - (precioBase * descuentoValido / 100))
+    
+    const handleImgError = (e) => {
+        e.target.src = '/placeholder.png' 
+    }
+    
     return (
         <Card className="item-card">
             
@@ -19,7 +24,15 @@ const ItemCard = ({producto}) => {
                 </Badge>
             )}
 
-            <Card.Img variant="top" src={producto.imagen} alt={producto.name} style={{height:'350px', objectFit:'cover', objectPosition:'top'}} />
+            {/* Evento si falla la carga de imagen */}
+            <Card.Img 
+                variant="top" 
+                src={producto.imagen || '/placeholder.webp'} 
+                alt={producto.nombre} 
+                onError={handleImgError}
+                style={{height:'350px', objectFit:'cover', objectPosition:'top'}} 
+            />
+
             <Card.Body className="d-flex flex-column">
                 <Card.Title style={{       
                     overflow: 'hidden', 

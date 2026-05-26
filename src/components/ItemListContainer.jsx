@@ -25,7 +25,7 @@ const ItemListContainer = ({greeting = "Catálogo"})=> {
     const cleanQuery = query?.toLowerCase().trim()
     const esBusquedaOferta = ['oferta', 'ofertas', 'descuento', 'descuentos'].includes(cleanQuery)
     const esBusquedaNovedad = ['novedad', 'novedades', 'nuevo', 'nuevos'].includes(cleanQuery)
-   
+
     // Lógica para generar un título dinámico
     const getTitle = () => {
         if (location.pathname === '/ofertas'|| esBusquedaOferta) return "🔥 ¡NUESTRAS OFERTAS! 🔥"
@@ -55,8 +55,9 @@ const ItemListContainer = ({greeting = "Catálogo"})=> {
                         ...doc.data()
                     }
                 })
-                setData(list)
-                let productosFiltrados = list;
+                // Para evitar agregar productos que no tengan nombre válido
+                const listaConNombresValidos = list.filter(p => p.nombre && p.nombre.trim() !== "");
+                let productosFiltrados = listaConNombresValidos;
                 
                 if (location.pathname === '/ofertas' || esBusquedaOferta) {
                     productosFiltrados = productosFiltrados.filter(p => p.descuento > 0);

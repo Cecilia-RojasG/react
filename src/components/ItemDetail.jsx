@@ -11,15 +11,20 @@ const ItemDetail = ({detail}) => {
     const productoEnCarrito = cart.find(prod => prod.id === detail.id)
     //Calcula la cantidad acumulada en el carrito (si no existe, es 0)
     const cantidadEnCarrito = productoEnCarrito ? productoEnCarrito.quantity : 0
-    //Resta la cantidad del carrito al stock base
-    const stockVisualDisponible = detail.stock - cantidadEnCarrito
+    //Resta la cantidad del carrito al stock base, pero si el precio es 0, no hay stock disponible para comprar.
+    const esPrecioCero = !detail.precio || detail.precio === 0
+    const stockVisualDisponible = esPrecioCero ? 0 : (detail.stock - cantidadEnCarrito)
     
     const onAdd = (cantidad)=>{
-        addItem(detail,cantidad )
+        if (esPrecioCero) return 
+        addItem(detail, cantidad)
         setPurchase(true)
     }
     const descuentoValido = detail.descuento || 0
     const precioFinal = Math.round(detail.precio - (detail.precio * detail.descuento / 100))
+    const handleImgError = (e) => {
+        e.target.src = '/placeholder.png' 
+    }
 
     return (
         <div className="container mt-5">
@@ -40,8 +45,9 @@ const ItemDetail = ({detail}) => {
                             />
                         )}
                         <img 
-                            src={detail.imagen} 
+                            src={detail.imagen || '/placeholder.webp'} 
                             alt={detail.nombre} 
+                            onError={handleImgError}
                             className="img-fluid"
                             style={{ 
                                     width: '100%', 
@@ -54,7 +60,7 @@ const ItemDetail = ({detail}) => {
                     <div className="col-md-8">
                         <div className="card-body p-5">
                             <h2 className="display-6 fw-bold mb-2">{detail.nombre}</h2>
-                            <p className="text-muted h5 mb-4">{detail.autor}</p>
+                            <p className="text-muted h5 mb-4">{detail.autor || "No se encuentra el nombre del Autor o Editorial."}</p>
                             <p className="mt-4 mb-4 text-secondary" style={{ fontSize: '1.0rem' }}><strong>Descripción:</strong> {detail.descripcion || "Sin descripción disponible para este producto."}
                             </p>
 
@@ -73,13 +79,16 @@ const ItemDetail = ({detail}) => {
                                 )}
                             </div>
                             
-                            {/* 5. MENSAJES DE STOCK Y CARRITO ACTUALIZADOS */}
+                            {/* 5. MENSAJES DE STOCK Y CARRITO */}
                             <div className="mb-4 d-flex gap-4 flex-wrap">
-                                <p className="text-muted mb-0 small">Stock disponible: <strong>{stockVisualDisponible}</strong> unidades.</p>
+                                {esPrecioCero ? (
+                                    <p className="text-danger mb-0 small"><strong>Sin stock disponible para la venta.</strong></p>
+                                ) : (
+                                    <p className="text-muted mb-0 small">Stock disponible: <strong>{stockVisualDisponible}</strong> unidades.</p>
+                                )}
+                                
                                 {cantidadEnCarrito > 0 && (
-                                    <p className="text-danger mb-0 small">
-                                        En el carrito: <strong>{cantidadEnCarrito}</strong> unidades.
-                                    </p>
+                                    <p className="text-danger mb-0 small">En el carrito: <strong>{cantidadEnCarrito}</strong> unidades.</p>
                                 )}
                             </div>
                             {/* BOTONES DE FLUJO CONTINUO Y CONTADOR */}
