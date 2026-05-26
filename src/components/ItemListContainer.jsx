@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react"
-import { getProducts } from "../mock/asyncData"
 import ItemList from "./ItemList"
 import Loader from "./Loader"
 import {collection, getDocs, where, query} from "firebase/firestore"
@@ -22,11 +21,15 @@ const ItemListContainer = ({greeting = "Catálogo"})=> {
         'rol': 'Juegos de Rol',
         'libros': 'Libros'
     }
-
+    
+    const cleanQuery = query?.toLowerCase().trim()
+    const esBusquedaOferta = ['oferta', 'ofertas', 'descuento', 'descuentos'].includes(cleanQuery)
+    const esBusquedaNovedad = ['novedad', 'novedades', 'nuevo', 'nuevos'].includes(cleanQuery)
+   
     // Lógica para generar un título dinámico
     const getTitle = () => {
-        if (location.pathname === '/ofertas') return "🔥 ¡NUESTRAS OFERTAS! 🔥"
-        if (location.pathname === '/novedades') return "✨ ÚLTIMAS NOVEDADES ✨"
+        if (location.pathname === '/ofertas'|| esBusquedaOferta) return "🔥 ¡NUESTRAS OFERTAS! 🔥"
+        if (location.pathname === '/novedades'|| esBusquedaNovedad) return "✨ ÚLTIMAS NOVEDADES ✨"
         if (query) return `RESULTADOS PARA: "${query.toUpperCase()}"`
         
         if (type) {
@@ -41,8 +44,11 @@ const ItemListContainer = ({greeting = "Catálogo"})=> {
     useEffect(()=>{
         setLoading(true)
         const productsCollection = collection(db, "items")
-        getDocs(productsCollection)
-            .then((res) => {
+        // Ejecuta la consulta de Firebase y un temporizador en paralelo
+        Promise.all([
+            getDocs(productsCollection), new Promise(resolve => setTimeout(resolve, 1000)) 
+        ])    
+            .then(([res]) => {
                 const list= res.docs.map((doc)=>{
                     return{
                         id:doc.id,
@@ -52,10 +58,10 @@ const ItemListContainer = ({greeting = "Catálogo"})=> {
                 setData(list)
                 let productosFiltrados = list;
                 
-                if (location.pathname === '/ofertas') {
+                if (location.pathname === '/ofertas' || esBusquedaOferta) {
                     productosFiltrados = productosFiltrados.filter(p => p.descuento > 0);
                 }
-                else if (location.pathname === '/novedades') {
+                else if (location.pathname === '/novedades' || esBusquedaNovedad) {
                     productosFiltrados = productosFiltrados.filter(p => p.novedad === 'si')
                 }
                 else if (type) {
@@ -65,19 +71,19 @@ const ItemListContainer = ({greeting = "Catálogo"})=> {
                     );
                 }
                 
-                if (query) {
+                if (query && !esBusquedaOferta && !esBusquedaNovedad) {
                     productosFiltrados = productosFiltrados.filter(p => 
-                        p.nombre?.toLowerCase().includes(query.toLowerCase()) ||
-                        p.autor?.toLowerCase().includes(query.toLowerCase()) ||
-                        p.mundo?.toLowerCase().includes(query.toLowerCase()) ||
-                        p.categoria?.toLowerCase().includes(query.toLowerCase())
+                        p.nombre?.toLowerCase().includes(cleanQuery) ||
+                        p.autor?.toLowerCase().includes(cleanQuery) ||
+                        p.mundo?.toLowerCase().includes(cleanQuery) ||
+                        p.categoria?.toLowerCase().includes(cleanQuery)
                     );
                 }
                 setData(productosFiltrados);
             })
             .catch((err) => console.log(err))
             .finally(()=> setLoading(false))            
-    }, [type, query, location.pathname]) 
+    }, [type, query, location.pathname, esBusquedaOferta, esBusquedaNovedad, cleanQuery]) 
     
     if (loading) {
         return <Loader text={type ? `Cargando ${type}...` : 'Cargando productos...'} />

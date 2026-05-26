@@ -29,3 +29,10 @@
     text-transform: uppercase;
     letter-spacing: 1px;
 }
+
+@media (max-width: 499.98px) {
+    .custom-cart-offcanvas.offcanvas {
+        width: 80% !important; /* 💡 Deja libre un 20% en el lado izquierdo para mantener la consistencia con el Navbar */
+        box-shadow: -5px 0 25px rgba(0, 0, 0, 0.6); /* Genera profundidad visual sobre el fondo de la tienda */
+    }
+}

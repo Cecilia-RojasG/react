@@ -25,12 +25,12 @@ const CarrouselReact = () => {
     useEffect(() => {
         const timer = setTimeout(() => {
             setShow(true);
-        }, 500);
+        }, 100);
 
         return () => clearTimeout(timer);
     }, []);
 
-    if (!show) return <div style={{ height: '380px' }}></div>;
+    if (!show) return <div style={{ height: '400px' }}></div>;
 
     return (
         

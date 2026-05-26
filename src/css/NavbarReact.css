@@ -68,14 +68,18 @@
 
 
 /* Tamaño para pantallas muy pequeñas */
-@media (max-width: 490px) {
+@media (max-width: 500px) {
     #title-navbar {
-        font-size: 1rem;
+        font-size: 1.1rem;
         margin-left: 8px;
     }
     #navbar-img{
         width: 50px;
         height: 50px;
+    }
+    .custom-nav-offcanvas.offcanvas {
+        width: 80% !important; 
+        box-shadow: -5px 0 25px rgba(0, 0, 0, 0.6); /* Añade sombra para separar el menú del contenido de atrás */
     }
 }
 
@@ -186,4 +190,26 @@
     font-family: 'Roboto', sans-serif;
     font-weight: bold;
 }
+.custom-toggler:focus,
+.custom-toggler:active,
+.custom-toggler.navbar-toggler {
+    outline: none !important;
+    box-shadow: none !important;
+    border-color: #66FFD4 !important; 
+    padding: 0.15rem 0.15rem !important; 
+    line-height: 1 !important;
+}
+
+.custom-toggler:active {
+    transform: scale(0.92) !important; 
+    background-color: rgba(127, 255, 212, 0.15) !important; 
+    border-color: #66FFD4 !important; 
+    transition: transform 0.1s ease !important; 
+}
+
+.custom-toggler .navbar-toggler-icon {
+    background-size: 70% !important; 
+}
+
+
 

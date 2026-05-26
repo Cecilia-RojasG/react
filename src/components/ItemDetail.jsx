@@ -5,8 +5,15 @@ import { CartContext } from '../context/CartContext'
 import { Link } from 'react-router-dom'
 
 const ItemDetail = ({detail}) => {
-    const {addItem} = useContext(CartContext)
+    const {addItem, cart} = useContext(CartContext)
     const [purchase, setPurchase]= useState(false)
+    //Busca si este producto específico ya está en el carrito
+    const productoEnCarrito = cart.find(prod => prod.id === detail.id)
+    //Calcula la cantidad acumulada en el carrito (si no existe, es 0)
+    const cantidadEnCarrito = productoEnCarrito ? productoEnCarrito.quantity : 0
+    //Resta la cantidad del carrito al stock base
+    const stockVisualDisponible = detail.stock - cantidadEnCarrito
+    
     const onAdd = (cantidad)=>{
         addItem(detail,cantidad )
         setPurchase(true)
@@ -66,13 +73,29 @@ const ItemDetail = ({detail}) => {
                                 )}
                             </div>
                             
-                            <p className="text-muted mb-4 small">Stock disponible: <strong>{detail.stock}</strong> unidades.</p>
-                            {purchase 
-                            ? <div style={{display:'flex', justifyContent:'space-around', alignItems:'center', width:'80%', gap: '10px', flexWrap: 'wrap'}}>
-                                <Link className='btn btn-dark' to='/'>Seguir Comprando</Link>
-                                <Link className='btn btn-dark' to='/cart'>Ir al carrito</Link>
-                            </div> 
-                                : <ItemCount stock={detail.stock} onAdd={onAdd}/>}
+                            {/* 5. MENSAJES DE STOCK Y CARRITO ACTUALIZADOS */}
+                            <div className="mb-4 d-flex gap-4 flex-wrap">
+                                <p className="text-muted mb-0 small">Stock disponible: <strong>{stockVisualDisponible}</strong> unidades.</p>
+                                {cantidadEnCarrito > 0 && (
+                                    <p className="text-danger mb-0 small">
+                                        En el carrito: <strong>{cantidadEnCarrito}</strong> unidades.
+                                    </p>
+                                )}
+                            </div>
+                            {/* BOTONES DE FLUJO CONTINUO Y CONTADOR */}
+                            <div className="mt-3">
+                                {/* El contador se queda visible, pero adaptado al stock remanente */}
+                                <ItemCount stock={stockVisualDisponible} onAdd={onAdd}/>
+                            </div>
+                            <div>
+                                {/* Si ya tiene productos en el carrito muestra los siguiente*/}
+                                {cantidadEnCarrito > 0 && (
+                                    <div className="mt-4 d-flex gap-2" style={{ maxWidth: '320px' }}>
+                                        <Link className='btn btn-outline-dark flex-fill text-center fw-bold' to='/'>Volver a Home</Link>
+                                        <Link className='btn btn-dark flex-fill text-center fw-bold' to='/cart'>Ir al carrito 🛒</Link>
+                                    </div>
+                                )}
+                            </div>
                         </div>
                     </div>
                 </div>

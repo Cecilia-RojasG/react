@@ -23,7 +23,7 @@ const CartWidgetRI = () => {
                     </Badge>
                 )}
             </div>
-            <Offcanvas show={show} onHide={handleClose} placement="end" data-bs-theme="dark">
+            <Offcanvas show={show} onHide={handleClose} placement="end" data-bs-theme="dark" className="custom-cart-offcanvas">
                 <Offcanvas.Header closeButton>
                     <Offcanvas.Title className="fw-bold cart-title">MI CARRITO <BsCart4/></Offcanvas.Title>
                 </Offcanvas.Header>

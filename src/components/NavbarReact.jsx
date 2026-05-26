@@ -42,10 +42,19 @@ function NavbarReact() {
                     />{' '}
                     <strong id='title-navbar'>EL CONTEMPLADOR FELIZ</strong>
                 </Navbar.Brand>
-                <Navbar.Toggle 
-                    aria-controls={`offcanvasNavbar-expand-${expand}`} 
-                    onClick={handleToggle} 
-                />
+
+                <div className="d-flex align-items-center gap-1 order-xl-last">
+                    {/* Visible en celulares y tablets */}
+                    <div className="d-xl-none" style={{ transform: 'scale(0.80)', transformOrigin: 'right center' }}>
+                        <CartWidgetRI />
+                    </div>
+
+                    <Navbar.Toggle
+                        className="custom-toggler"
+                        aria-controls={`offcanvasNavbar-expand-${expand}`} 
+                        onClick={handleToggle} 
+                    />
+                </div>
                 <Navbar.Offcanvas 
                     show={showMenu}       
                     onHide={handleClose}  
@@ -53,6 +62,7 @@ function NavbarReact() {
                     data-bs-theme="dark"
                     id={`offcanvasNavbar-expand-${expand}`}
                     placement="end"
+                    className="custom-nav-offcanvas"
                 >
                     <Offcanvas.Header closeButton>
                         <Offcanvas.Title className= 'title-off'>
