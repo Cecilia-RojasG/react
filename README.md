@@ -15,15 +15,15 @@ Este es un proyecto de página web de e-commerce de juegos de rol, mesa y libros
 
 ### Versión Host 💻
 
-Si desea ver el proyecto online, ingrese al siguiente link: [Coder Flex App](http:/)
+Si desea ver el proyecto online, ingrese al siguiente link: [El Contemplador Feliz App](https://react-eta-henna.vercel.app/)
 
 ### Librerias utilizadas
 
-- [React Bootstrap](): utilizada para el styling de la app.
-- [React Fast Marquee](): para la marquesina superior en la app.
-- [React Icons](): para iconos en la app.
-- [Firebase](): base de datos del proyecto
-- [React Router Dom](): libreria de navegación por rutas.
+- [React Bootstrap](https://react-bootstrap.netlify.app/): utilizada para el styling de la app.
+- [React Fast Marquee](https://www.react-fast-marquee.com): para la marquesina superior en la app.
+- [React Icons](https://react-icons.github.io/react-icons/): para iconos en la app.
+- [Firebase](https://firebase.google.com/): base de datos del proyecto
+- [React Router Dom](https://reactrouter.com/): libreria de navegación por rutas.
 
 
 Desarrollado por Cecilia Rojas.
